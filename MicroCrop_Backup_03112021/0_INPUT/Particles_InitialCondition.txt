@@ -1,9 +1,0 @@
-## VelocityX(m/s) VelocityY(m/s) VelocityZ(m/s)
-GLOBAL 0
-1.0 0.0 0.0
-
-
-## LocationX (m) LocationY (m) LocationZ(m) VelocityX(m/s) VelocityY(m/s) VelocityZ(m/s)
-LOCAL 2
-0.00005 0.00025 0.0001 1.0 0.0 0.0
-0.003 0.001 0.0 1.0 0.0 0.0
