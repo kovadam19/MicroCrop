@@ -1,0 +1,24 @@
+MATERIALS 1
+0_INPUT/CropBusterMaterials.txt
+
+PARTICLES 1
+0_INPUT/Cube.vtk
+
+INITIAL_CONDITION 1
+0_INPUT/Particles_InitialCondition.txt
+
+BOUNDARY_CONDITION 1
+0_INPUT/Particles_BoundaryCondition.txt
+
+EXTERNAL_FORCE 1
+0_INPUT/Particles_ExternalForce.txt
+
+OUTPUTFOLDER
+1_OUTPUT/
+
+NUMBER_OF_CPU_THREADS 12
+
+START_TIME 0.0
+END_TIME 1e-2
+TIMESTEP 1e-5
+SAVE_INTERVAL 1e-4

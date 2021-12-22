@@ -1,0 +1,128 @@
+### PROCESSING INPUT FILES ###
+Loading settings...
+Loading material properties...
+Loading interaction properties...
+Loading cells...
+Execution time of processing input files in milliseconds: 769
+
+### CREATING SIMULATION COMPONENTS ###
+Initializing cells...
+Creating cell faces...
+Creating intersection nodes...
+Creating axial springs...
+Creating rotational springs...
+Applying initial conditions...
+Applying boundary conditions...
+Applying fixed velocities...
+Creating external forces...
+Initializing the contacts...
+Execution time of creating simulation components in milliseconds: 1086
+
+### CHECKING SIMULATION COMPONENTS ###
+Execution time of checking simulation components in milliseconds: 41
+
+### SAVING INITIAL CONFIGURATION ###
+Execution time of saving initial configuration in milliseconds: 1461
+
+### INITIALIZING THE GPU DEVICE ###
+Setting GPU device...
+Allocate GPU device memory...
+Copying data to GPU device...
+Execution time of initializing GPU device in milliseconds: 153
+
+### RUNNING THE SIMULATION ###
+
+Simulation is 0.998645 % completed
+Execution time of 738 iterations in milliseconds : 206778
+Saving at time 0.000037 second
+Execution time of the save in milliseconds: 1656
+
+Simulation is 1.998645 % completed
+Execution time of 738 iterations in milliseconds : 208235
+Saving at time 0.000074 second
+Execution time of the save in milliseconds: 1647
+
+Simulation is 2.998645 % completed
+Execution time of 738 iterations in milliseconds : 206976
+Saving at time 0.000111 second
+Execution time of the save in milliseconds: 1655
+
+Simulation is 3.998645 % completed
+Execution time of 738 iterations in milliseconds : 207354
+Saving at time 0.000148 second
+Execution time of the save in milliseconds: 1653
+
+Simulation is 4.998645 % completed
+Execution time of 738 iterations in milliseconds : 208093
+Saving at time 0.000184 second
+Execution time of the save in milliseconds: 1647
+
+Simulation is 5.998645 % completed
+Execution time of 738 iterations in milliseconds : 210275
+Saving at time 0.000221 second
+Execution time of the save in milliseconds: 1661
+
+Simulation is 6.998645 % completed
+Execution time of 738 iterations in milliseconds : 211108
+Saving at time 0.000258 second
+Execution time of the save in milliseconds: 1669
+
+Simulation is 7.998645 % completed
+Execution time of 738 iterations in milliseconds : 209068
+Saving at time 0.000295 second
+Execution time of the save in milliseconds: 1673
+
+Simulation is 8.998645 % completed
+Execution time of 738 iterations in milliseconds : 209203
+Saving at time 0.000332 second
+Execution time of the save in milliseconds: 1678
+
+Simulation is 9.998645 % completed
+Execution time of 738 iterations in milliseconds : 209118
+Saving at time 0.000369 second
+Execution time of the save in milliseconds: 1662
+
+Simulation is 10.998645 % completed
+Execution time of 738 iterations in milliseconds : 208501
+Saving at time 0.000406 second
+Execution time of the save in milliseconds: 1657
+
+Simulation is 11.998645 % completed
+Execution time of 738 iterations in milliseconds : 207138
+Saving at time 0.000443 second
+Execution time of the save in milliseconds: 1661
+
+Simulation is 12.998645 % completed
+Execution time of 738 iterations in milliseconds : 206843
+Saving at time 0.000480 second
+Execution time of the save in milliseconds: 1669
+
+Simulation is 13.998645 % completed
+Execution time of 738 iterations in milliseconds : 206900
+Saving at time 0.000517 second
+Execution time of the save in milliseconds: 1666
+
+Simulation is 14.998645 % completed
+Execution time of 738 iterations in milliseconds : 207932
+Saving at time 0.000553 second
+Execution time of the save in milliseconds: 1664
+
+Simulation is 15.998645 % completed
+Execution time of 738 iterations in milliseconds : 207780
+Saving at time 0.000590 second
+Execution time of the save in milliseconds: 1672
+
+Simulation is 16.998645 % completed
+Execution time of 738 iterations in milliseconds : 207494
+Saving at time 0.000627 second
+Execution time of the save in milliseconds: 1666
+
+Simulation is 17.998645 % completed
+Execution time of 738 iterations in milliseconds : 207308
+Saving at time 0.000664 second
+Execution time of the save in milliseconds: 1674
+
+Simulation is 18.998645 % completed
+Execution time of 738 iterations in milliseconds : 209225
+Saving at time 0.000701 second
+Execution time of the save in milliseconds: 1683

@@ -1,0 +1,8 @@
+## LocationX(m) LocationY(m) LocationZ(m) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+LOCAL 0
+0.0 0.0 0.01 0.0 9999.0 1.0 0.0 0.0
+
+## LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+PLANE 2
+0.0 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 -0.001 0.0 0.0
+0.12 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 0.001 0.0 0.0

@@ -1,0 +1,542 @@
+### PROCESSING INPUT FILES ###
+Loading settings...
+Loading material properties...
+Loading interaction properties...
+Loading cells...
+Execution time of processing input files in milliseconds: 13
+
+### CREATING SIMULATION COMPONENTS ###
+Initializing cells...
+Creating cell faces...
+Creating intersection nodes...
+Creating axial springs...
+Creating rotational springs...
+Applying initial conditions...
+Applying boundary conditions...
+Applying fixed velocities...
+Creating external forces...
+Initializing the contacts...
+Execution time of creating simulation components in milliseconds: 9
+
+### CHECKING SIMULATION COMPONENTS ###
+WARNING: Corrupt materials found!
+Deleting corrupt intersection nodes, axial and rotational springs...
+Creating adjusted intersection nodes...
+Creating adjusted axial springs...
+Creating adjusted rotational springs...
+Number of adjusted materials: 1
+Adjusted material index: 0
+Adjusted material component: 0
+Adjusted material location: 0.000000 0.000000 0.000000
+Execution time of checking simulation components in milliseconds: 4
+
+### SAVING INITIAL CONFIGURATION ###
+Execution time of saving initial configuration in milliseconds: 93
+
+### RUNNING THE SIMULATION ###
+
+Simulation is 0.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.000990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 1.990000 % completed
+Execution time of 100 iterations in milliseconds : 558
+Saving at time 0.001990 second
+Execution time of the save in milliseconds: 115
+
+Simulation is 2.990000 % completed
+Execution time of 100 iterations in milliseconds : 558
+Saving at time 0.002990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 3.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.003990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 4.990000 % completed
+Execution time of 100 iterations in milliseconds : 515
+Saving at time 0.004990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 5.990000 % completed
+Execution time of 100 iterations in milliseconds : 540
+Saving at time 0.005990 second
+Execution time of the save in milliseconds: 119
+
+Simulation is 6.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.006990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 7.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.007990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 8.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.008990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 9.990000 % completed
+Execution time of 100 iterations in milliseconds : 521
+Saving at time 0.009990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 10.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.010990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 11.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.011990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 12.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.012990 second
+Execution time of the save in milliseconds: 110
+
+Simulation is 13.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.013990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 14.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.014990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 15.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.015990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 16.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.016990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 17.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.017990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 18.990000 % completed
+Execution time of 100 iterations in milliseconds : 515
+Saving at time 0.018990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 19.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.019990 second
+Execution time of the save in milliseconds: 113
+
+Simulation is 20.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.020990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 21.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.021990 second
+Execution time of the save in milliseconds: 113
+
+Simulation is 22.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.022990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 23.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.023990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 24.990000 % completed
+Execution time of 100 iterations in milliseconds : 525
+Saving at time 0.024990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 25.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.025990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 26.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.026990 second
+Execution time of the save in milliseconds: 103
+
+Simulation is 27.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.027990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 28.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.028990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 29.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.029990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 30.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.030990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 31.990000 % completed
+Execution time of 100 iterations in milliseconds : 525
+Saving at time 0.031990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 32.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.032990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 33.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.033990 second
+Execution time of the save in milliseconds: 102
+
+Simulation is 34.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.034990 second
+Execution time of the save in milliseconds: 113
+
+Simulation is 35.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.035990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 36.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.036990 second
+Execution time of the save in milliseconds: 117
+
+Simulation is 37.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.037990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 38.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.038990 second
+Execution time of the save in milliseconds: 137
+
+Simulation is 39.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.039990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 40.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.040990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 41.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.041990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 42.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.042990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 43.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.043990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 44.990000 % completed
+Execution time of 100 iterations in milliseconds : 534
+Saving at time 0.044990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 45.990000 % completed
+Execution time of 100 iterations in milliseconds : 541
+Saving at time 0.045990 second
+Execution time of the save in milliseconds: 103
+
+Simulation is 46.990000 % completed
+Execution time of 100 iterations in milliseconds : 525
+Saving at time 0.046990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 47.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.047990 second
+Execution time of the save in milliseconds: 103
+
+Simulation is 48.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.048990 second
+Execution time of the save in milliseconds: 102
+
+Simulation is 49.990000 % completed
+Execution time of 100 iterations in milliseconds : 544
+Saving at time 0.049990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 50.990000 % completed
+Execution time of 100 iterations in milliseconds : 527
+Saving at time 0.050990 second
+Execution time of the save in milliseconds: 110
+
+Simulation is 51.990000 % completed
+Execution time of 100 iterations in milliseconds : 529
+Saving at time 0.051990 second
+Execution time of the save in milliseconds: 114
+
+Simulation is 52.990000 % completed
+Execution time of 100 iterations in milliseconds : 535
+Saving at time 0.052990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 53.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.053990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 54.990000 % completed
+Execution time of 100 iterations in milliseconds : 533
+Saving at time 0.054990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 55.990000 % completed
+Execution time of 100 iterations in milliseconds : 536
+Saving at time 0.055990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 56.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.056990 second
+Execution time of the save in milliseconds: 114
+
+Simulation is 57.990000 % completed
+Execution time of 100 iterations in milliseconds : 531
+Saving at time 0.057990 second
+Execution time of the save in milliseconds: 111
+
+Simulation is 58.990000 % completed
+Execution time of 100 iterations in milliseconds : 538
+Saving at time 0.058990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 59.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.059990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 60.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.060990 second
+Execution time of the save in milliseconds: 115
+
+Simulation is 61.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.061990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 62.990000 % completed
+Execution time of 100 iterations in milliseconds : 520
+Saving at time 0.062990 second
+Execution time of the save in milliseconds: 110
+
+Simulation is 63.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.063990 second
+Execution time of the save in milliseconds: 103
+
+Simulation is 64.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.064990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 65.990000 % completed
+Execution time of 100 iterations in milliseconds : 521
+Saving at time 0.065990 second
+Execution time of the save in milliseconds: 111
+
+Simulation is 66.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.066990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 67.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.067990 second
+Execution time of the save in milliseconds: 115
+
+Simulation is 68.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.068990 second
+Execution time of the save in milliseconds: 112
+
+Simulation is 69.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.069990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 70.990000 % completed
+Execution time of 100 iterations in milliseconds : 528
+Saving at time 0.070990 second
+Execution time of the save in milliseconds: 127
+
+Simulation is 71.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.071990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 72.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.072990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 73.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.073990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 74.990000 % completed
+Execution time of 100 iterations in milliseconds : 534
+Saving at time 0.074990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 75.990000 % completed
+Execution time of 100 iterations in milliseconds : 530
+Saving at time 0.075990 second
+Execution time of the save in milliseconds: 104
+
+Simulation is 76.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.076990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 77.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.077990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 78.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.078990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 79.990000 % completed
+Execution time of 100 iterations in milliseconds : 524
+Saving at time 0.079990 second
+Execution time of the save in milliseconds: 126
+
+Simulation is 80.990000 % completed
+Execution time of 100 iterations in milliseconds : 526
+Saving at time 0.080990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 81.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.081990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 82.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.082990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 83.990000 % completed
+Execution time of 100 iterations in milliseconds : 525
+Saving at time 0.083990 second
+Execution time of the save in milliseconds: 105
+
+Simulation is 84.990000 % completed
+Execution time of 100 iterations in milliseconds : 523
+Saving at time 0.084990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 85.990000 % completed
+Execution time of 100 iterations in milliseconds : 522
+Saving at time 0.085990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 86.990000 % completed
+Execution time of 100 iterations in milliseconds : 508
+Saving at time 0.086990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 87.990000 % completed
+Execution time of 100 iterations in milliseconds : 501
+Saving at time 0.087990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 88.990000 % completed
+Execution time of 100 iterations in milliseconds : 500
+Saving at time 0.088990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 89.990000 % completed
+Execution time of 100 iterations in milliseconds : 500
+Saving at time 0.089990 second
+Execution time of the save in milliseconds: 108
+
+Simulation is 90.990000 % completed
+Execution time of 100 iterations in milliseconds : 498
+Saving at time 0.090990 second
+Execution time of the save in milliseconds: 135
+
+Simulation is 91.990000 % completed
+Execution time of 100 iterations in milliseconds : 502
+Saving at time 0.091990 second
+Execution time of the save in milliseconds: 103
+
+Simulation is 92.990000 % completed
+Execution time of 100 iterations in milliseconds : 501
+Saving at time 0.092990 second
+Execution time of the save in milliseconds: 107
+
+Simulation is 93.990000 % completed
+Execution time of 100 iterations in milliseconds : 502
+Saving at time 0.093990 second
+Execution time of the save in milliseconds: 120
+
+Simulation is 94.990000 % completed
+Execution time of 100 iterations in milliseconds : 499
+Saving at time 0.094990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 95.990000 % completed
+Execution time of 100 iterations in milliseconds : 501
+Saving at time 0.095990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 96.990000 % completed
+Execution time of 100 iterations in milliseconds : 499
+Saving at time 0.096990 second
+Execution time of the save in milliseconds: 109
+
+Simulation is 97.990000 % completed
+Execution time of 100 iterations in milliseconds : 499
+Saving at time 0.097990 second
+Execution time of the save in milliseconds: 106
+
+Simulation is 98.990000 % completed
+Execution time of 100 iterations in milliseconds : 503
+Saving at time 0.098990 second
+Execution time of the save in milliseconds: 127
+
+Simulation is 99.990000 % completed
+Execution time of 100 iterations in milliseconds : 502
+Saving at time 0.099990 second
+Execution time of the save in milliseconds: 107
+
+### SAVING THE FINAL CONFIGURATION ###
+Execution time of the final configuration in milliseconds: 104
+
+### SIMULATION COMPLETED ###
+Total simulation time in milliseconds: 63700
