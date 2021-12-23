@@ -285,10 +285,59 @@ SAVE_EXTERNAL_FORCE_VALUE 1
 
 #### Cells input file structure
 
+The cells input file is basically a VTK file that contains the mesh (points and cells) of the component.
+So, it has to contain two keywords:
+* POINTS *numPoints* *dataType* followed by the X-Y-Z coordinates
+* CELLS *numCells* *numData* followed by the number of points that a cell contains and the indices of the points
 
+The order of the keywords matters: **POINTS has to come first and then CELLS**.
+
+You can see an exmple cells input file below.
+In this file, 8 points define 2 tetrahedral cells.
+
+```
+# vtk DataFile Version 4.2
+vtk output
+ASCII
+DATASET UNSTRUCTURED_GRID
+
+POINTS 8 float
+0.00005 0.00025 0.0001
+-0.0006 0.00025 0.0001
+0.00005 0.00075 0.0001
+0.00005 0.00075 0.0006
+0.003 0.001 0.0
+0.007 0.002 0.0
+0.005 0.005 0.0
+0.005 0.00267 0.005
+
+CELLS 2 10
+4 0 1 2 3 
+4 4 5 6 7 
+
+CELL_TYPES 2
+10
+10
+```
 
 #### Materials input file structure
 
+The materials input file is a simple text file.
+It contains all the necessary information for the material definitions.
+The following keywords has to be defined:
+* NUMBER *numMaterials*: This defines how many materials definition we have. **This keyword has to be at the very top of the file**.
+* LOCATION *x y z*: This defines where the material is defined in the Certesian space: X-Y-Z coordinates in meter.
+* DENSITY *density*: This defines the density at the given location: kg m <sup>-3</sup>.
+* ANISOTROPY_AXIS *x0 y0 z0 x1 y1 z1 z2 y2 z2*: This defines the orientation of the three anisotropy axes at the given location. **The axes have to be normalized**.
+* ANISOTROPY_TENSILE_STIFFNESS *k0 k1 k2*: This defines the tensile stiffness for each anisotropy axis: N m <sup>-1</sup> .
+* ANISOTROPY_COMPRESSIVE_STIFFNESS *k0 k1 k2*: This defines the compressive stiffness for each anisotopy axis: N m <sup>-1</sup>.
+* ANISOTROPY_TENSILE_DAMPING *d0 d1 d2*: This defines the tensile damping for each anisotopy axis: N s m <sup>-1</sup>.
+* ANISOTROPY_COMPRESSIVE_DAMPING *d0 d1 d2*: This defines the compressive damping for each anisotopy axis: N s m <sup>-1</sup>.
+* ANISOTROPY_ROT_STIFFNESS *k0 k1 k2*: This defines the rotational stiffness for each rotational spring: N rad <sup>-1</sup>.
+* ANISOTROPY_SPRING_TENSILE_STRENGTH: *s0 s1 s2*: This defines the tensile strength for each axial spring: N.
+* ANISOTROPY_SPRING_COMPRESSIVE_STRENGTH: *s0 s1 s2*: This defines the compressive strength for each axial spring: N.
+
+You can see an example materials input file in which one material property is defined below.
 
 ```
 NUMBER
@@ -341,19 +390,190 @@ ANISOTROPY_SPRING_COMPRESSIVE_STRENGTH
 1e3
 ```
 
-
 #### Interactions input file structure
+
+The interactions input file defines the mechanical behaviour of the interactions among the cells.
+The interaction are defined on component (body) level.
+The following keywords have to be defined in the interactions intput file:
+* INTERACTION *numInteractions*: This defines how many interaction is defined. This is followed by the mechanical properties:
+  * ComponentAid(#) ComponentBid(#) CoefficientOfStaticFriction(-) NormalContactStiffness(N m <sup>-1</sup>) TangentialContactStiffness(N m <sup>-1</sup>).
+
+The component IDs are defined based on the order of their cells input file is defined in the Setting.txt file.
+
+You can see an example below.
+
+```
+INTERACTION 3
+0 1 0.2 2e6 1e6
+1 1 0.2 2e6 1e6
+1 2 0.2 2e6 1e6
+```
 
 #### Initial conditions input file structure
 
+The initial conditions input file contains the applied initial conditions. 
+There are four main initial condition types:
+* Global: these initial conditions will be applied onto all the cell nodes.
+* Component: these initial conditions will be applied onto the cell nodes that belong to a certain component.
+* Plane: these initial conditions will be applied onto the cell nodes that lay on a defined plane.
+* Local: these initial conditions will be applied onto **one cell node that is the closest** to the defined location. So, the cell node does not have to be in the exact position, the closest one will be selected.
+
+Accordingly, the following keywords can be defined in an initial condition input file:
+* GLOBAL *1/0*: This defines if a global initial condition is applied:
+  * VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* COMPONENT *numConditions*: This defines how many initial conditions are defined component-wise:
+  * ComponentID(#) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* PLANE *numConditions*: This defines how many planner initial conditions are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* LOCAL *numConditions*: This defines how many local initial conditions are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+You can see an example below.
+
+```
+GLOBAL 0
+1.0 0.0 0.0
+
+COMPONENT 1
+0 1.0 0.0 0.0
+
+PLANE 0
+0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0
+
+LOCAL 0
+0.00005 0.00025 0.0001 1.0 0.0 0.0
+```
+
 #### Boundary conditions input file structure
+
+The boundary conditions input file contains the applied boundary conditions. 
+There are four main boundary condition types:
+* Global: these boundary conditions will be applied onto all the cell nodes.
+* Component: these boundary conditions will be applied onto the cell nodes that belong to a certain component.
+* Plane: these boundary conditions will be applied onto the cell nodes that lay on a defined plane.
+* Local: these boundary conditions will be applied onto **one cell node that is the closest** to the defined location. So, the cell node does not have to be in the exact position, the closest one will be selected.
+
+Accordingly, the following keywords can be defined in a boundary condition input file:
+* GLOBAL *1/0*: This defines if a global boundary condition is applied:
+  * FixedX(0/1) FixedY(0/1) FixedZ(0/1).
+
+* COMPONENT *numConditions*: This defines how many boundary conditions are defined component-wise:
+  * ComponentID(#) FixedX(0/1) FixedY(0/1) FixedZ(0/1).
+
+* PLANE *numConditions*: This defines how many planner boundary conditions are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) FixedX(0/1) FixedY(0/1) FixedZ(0/1).
+
+* LOCAL *numConditions*: This defines how many local boundary conditions are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) FixedX(0/1) FixedY(0/1) FixedZ(0/1).
+
+You can see an example below.
+
+```
+GLOBAL 0
+0 1 0
+
+COMPONENT 0
+0 0 1 0
+
+PLANE 1
+0.0 0.0 0.0 1.0 0.0 0.0 1 1 1
+
+LOCAL 0
+0.01 0.01 0.0 1 1 1
+```
 
 #### External forces input file structure
 
+The external forces input file contains the applied external forces.
+Each external force has a start time and a duration, so it will be active only in a certain time interval. 
+There are five main external force types:
+* Gravitational: the gravitational forces will be applied onto all the cell nodes.
+* Global: these external forces will be applied onto all the cell nodes.
+* Component: these external forces will be applied onto the cell nodes that belong to a certain component.
+* Plane: these external forces will be applied onto the cell nodes that lay on a defined plane.
+* Local: these external forces will be applied onto **one cell node that is the closest** to the defined location. So, the cell node does not have to be in the exact position, the closest one will be selected.
+
+Accordingly, the following keywords can be defined in an external force input file:
+* GRAVITY *numForces*: This defines how many gravitational forces are defined:
+  * StartTime(s) DurationTime(s) GravityX(m s<sup>-2</sup>) GravityY(m s<sup>-2</sup>) GravityZ(m s<sup>-2</sup>).
+
+* GLOBAL *numForces*: This defines how many global external forces are applied:
+  * StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N).
+
+* COMPONENT *numForces*: This defines how many external forces are defined component-wise:
+  * ComponentID(#) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N).
+
+* PLANE *numForces*: This defines how many planner external forces are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N).
+
+* LOCAL *numForces*: This defines how many local external forces are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N).
+
+You can see an example below.
+
+```
+GRAVITY 1
+0.0 9999.0 0.0 -9.81 0.0
+
+GLOBAL 0
+0.0 0.1 1.0 0.0 0.0
+
+COMPONENT 0
+0 0.0 0.1 1.0 0.0 0.0
+
+PLANE 2
+0.0 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 -0.001 0.0 0.0
+0.01 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 0.001 0.0 0.0
+
+LOCAL 0
+0.0 0.0 0.01 0.0 9999.0 1.0 0.0 0.0
+```
+
 #### Fixed velocities input file structure
 
+The fixed velocities input file contains the applied fixed velocities. 
+There are four main fixed velocity types:
+* Global: these fixed velocities will be applied onto all the cell nodes.
+* Component: these fixed velocities will be applied onto the cell nodes that belong to a certain component.
+* Plane: these fixed velocities will be applied onto the cell nodes that lay on a defined plane.
+* Local: these fixed velocities will be applied onto **one cell node that is the closest** to the defined location. So, the cell node does not have to be in the exact position, the closest one will be selected.
 
-### Solver
+Accordingly, the following keywords can be defined in a fixed velocity input file:
+* GLOBAL *1/0*: This defines if a global fixed velocity is applied:
+  * VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* COMPONENT *numVelocities*: This defines how many fixed velocities are defined component-wise:
+  * ComponentID(#) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* PLANE *numVelocities*: This defines how many planner fixed velocities are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+* LOCAL *numVelocities*: This defines how many local fixed velocities are defined:
+  * LocationX(m) LocationY(m) LocationZ(m) VelocityX(m s <sup>-1</sup>) VelocityY(m s <sup>-1</sup>) VelocityZ(m s <sup>-1</sup>).
+
+You can see an example below.
+
+```
+GLOBAL 0
+1.0 0.0 0.0
+
+COMPONENT 2
+0 0.0 -3.333333 0.0
+2 0.0 0.0 0.0
+
+PLANE 0
+0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0
+
+LOCAL 0
+0.00005 0.00025 0.0001 1.0 0.0 0.0
+```
+
+### Running a simulation
+
+
 
 ### Result files
 
