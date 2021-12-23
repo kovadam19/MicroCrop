@@ -1,0 +1,47 @@
+# vtk DataFile Version 4.2
+vtk output
+ASCII
+DATASET UNSTRUCTURED_GRID
+
+POINTS 1 double
+0.00304659 0.00579491 0.00493357
+
+CELLS 1 2
+1 0
+
+CELL_TYPES 1
+1
+
+POINT_DATA 1
+FIELD FieldData 10
+
+ContactID_(#) 1 1 int
+471
+
+FaceID_(#) 1 1 int
+11860
+
+Friction_(-) 1 1 double
+0.2
+
+NormalStiffness_(N/m) 1 1 double
+2000
+
+TangentialStiffness_(N/m) 1 1 double
+1000
+
+NormalOverlap_(m) 1 1 double
+1.79521e-06
+
+TangentialOverlap_(m) 3 1 double
+-1.53219e-07 -6.84249e-07 1.54829e-07
+
+NormalForce_(N) 3 1 double
+-0.00348727 0.000846617 0.000115481
+
+TangentialForce_(N) 3 1 double
+0.000153219 0.000684249 -0.000154829
+
+TotalForce_(N) 3 1 double
+-0.00333405 0.00153087 -3.93474e-05
+

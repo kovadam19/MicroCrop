@@ -573,21 +573,78 @@ LOCAL 0
 
 ### Running a simulation
 
+After running a simulation the console window pops up where you can see the actual status of the run.
 
+A usual run consists of the following steps:
+1. Processing the input files
+2. Creating simulation components
+3. Checking simulation components
+4. Saving the initial configuration
+5. *Initialization of the GPU device (optional)*
+6. Running the simulation. At the time of each saving the solver sends the following messages:
+   * Percentage of completeness;
+   * Execution time of the number of iterations since the last save
+   * Saving at the current simulation time
+   * Execution time of the saving
+7. Saving the final configuration
+8. Simulation completed message & total simulation time.
+
+An example console window is shown below.
+
+![ConsoleWindow](documentation/ConsoleWindow.JPG "ConsoleWindow")
 
 ### Result files
 
+After the simulation is completed you can find the requested result files and the log file in the defined output folder.
+Depending on the save configuration the result files can be the followings:
+* LogFile.txt: This contains all the solver messages (same messages you can see in the console window during the run).
+* AxialSprings_Output_*saveStep*.vtk: This file contains the requested axial spring outputs at a certain *saveStep*.
+* Cell_Output_*saveStep*.vtk: This file contains the requested cell outputs at a certain *saveStep*.
+* ExternalForces_OutPut_*saveStep*.vtk: This file contains the requested external force outputs at a certain *saveStep*.
+* Face_Output_*saveStep*.vtk: This file contains the requested face outputs at a certain *saveStep*.
+* Node_Output_*saveStep*.vtk: This file contains the requested node outputs at a certain *saveStep*.
+* RotationalSprings_Output_*saveStep*.vtk: This file contains the requested rotational spring outputs at a certain *saveStep*.
+* Contacts_Output_*saveStep*.vtk: This file contains the requested contact outputs at a certain *saveStep*.
+
+The VTK output files can be processed and visualized in [Paraview](https://www.paraview.org/).
+Explaining the work with Paraview is not part of this documentation, but you can find useful tutorials [here](https://www.paraview.org/Wiki/ParaView_Self-directed_Tutorial).
+
+The simulation components are visualized in the following ways:
+* Cell nodes: each node is one point.
+* Cell faces: each face is visualized as a triangle.
+* Cells: each cell is visualized as a tetrahedron.
+* Axial springs: each axial spring is visualized as a line element between the two connected intersection points.
+* Rotational springs: each rotational spring is visualized as a quad element connecting the four intersection points of the two axial springs.
+* Contacts: each contact is visualized as a point at the location of the node that is involved in the interaction.
+* External forces: each external force is visualized as a point at the location of the node onto which it is applied.
+
 ## Small examples
 
-## Theory & background
+In this section you can find some small examples that show the capabilities of the solver.
+
+### One-side fixed cube with initial velocity
+
+
+
+### Cube tensile test
+
+
+
+### Sphere - cube eccentric collision
+
+
+
+## A real life application - Corn stalk simulation
+
+
 
 ## Performance tests
-
-## Corn stalk simulation
 
 ## Limitations
 
 ## Future work & development
+
+## Theory & background
 
 ## References
 
