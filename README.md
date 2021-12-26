@@ -679,16 +679,54 @@ The external forces are visualized by red arrows on the right side of the cube.
 
 ### Sphere - cube eccentric collision
 
+In this example, there are two components: a sphere and a cube.
+The sphere has a diameter of 0.01 m, while the size of the cube is 0.01 x 0.01 x 0.01 m.
+The center of the sphere is located above the center of the cube by 0.002 m, thus they are eccentric.
+The sphere has an initial velocity of 1.0 m s <sup>-1</sup> in direction X.
+The cube is floating in the space without having any initial or boundary conditions.
 
+The simulation contains the following elements:
+* 977 nodes;
+* 14864 faces;
+* 3716 cells;
+* 11148 axial and
+* 11148 rotational springs.
 
+For both components, the material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The components are also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
 
+As to the interaction properties, the coefficient of static friction was set to be 0.2 between the two components.
+The normal contact stiffness was set to 2e3 N m <sup>-1</sup>, while the tangential contact stiffness was 1e3 N m <sup>-1</sup>.
+
+The total simulation time was 2.5e-2 sec and it was solved with a time step of 1e-6 sec on 12 CPU threads.
+The total solving time was 367 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SphereCube_Collision*
+* *\1_OUTPUT\SphereCube_Collision*
+
+Below you can see the eccentric collision of the two components:
+* ISO view of the collision: components are visualized by magnitude nodal velocity;
+* Side view of the collision: components are visualized by magnitude nodal velocity;
+* Wireframe view with the total contact forces being visualized by arrows.
+
+*ISO view:*
 ![SphereCube_ISO](documentation/SphereCube_ISO_View.gif "Sphere - Cube Collision ISO")
 
+---
+*Side view:*
 ![SphereCube_Side](documentation/SphereCube_Side_View.gif "Sphere - Cube Collision Side")
 
+---
+*Wireframe with contact forces:*
 ![SphereCube_Wireframe](documentation/SphereCube_Side_View_Wireframe.gif "Sphere - Cube Collision Wireframe")
 
 ## A real life application - Corn stalk simulation
+
+### Geometry
+
+### Materials
 
 
 
