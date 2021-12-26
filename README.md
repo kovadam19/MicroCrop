@@ -620,19 +620,73 @@ The simulation components are visualized in the following ways:
 
 ## Small examples
 
-In this section you can find some small examples that show the capabilities of the solver.
+In this section you can find small examples that show some of the capabilities of the solver.
 
 ### One-side fixed cube with initial velocity
 
+In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while initial velocity of 1.0 m s <sup>-1</sup> in direction X and gravitational acceleration of -9.81 m s <sup>-2</sup> in direction Y are applied on it.
+The simulation contains the following elements:
+* 343 nodes;
+* 4548 faces;
+* 1137 cells;
+* 3411 axial and
+* 3411 rotational springs.
 
+The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The cube is also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
+
+The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
+The total solving time was 66 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SingleCube_Fixed_InitialVelocity_Gravity*
+* *\1_OUTPUT\SingleCube_Fixed_InitialVelocity_Gravity*
+
+Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
+The cells are visualized by magnitude nodal velocity.
+The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
+
+![SingleCube_InitVel](documentation/SingleCube_InitialVelocity_ISO_View.gif "Single Cube - Initial velocity")
 
 ### Cube tensile test
 
+In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while an external force of 1e-3 N in direction X is applied on each node on the other side of the cube.
+The simulation contains the following elements:
+* 343 nodes;
+* 4548 faces;
+* 1137 cells;
+* 3411 axial and
+* 3411 rotational springs.
 
+The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The cube is also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
+
+The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
+The total solving time was 64 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SingleCubeTensileTest*
+* *\1_OUTPUT\SingleCubeTensileTest*
+
+Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
+The cells are visualized by magnitude nodal velocity.
+The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
+The external forces are visualized by red arrows on the right side of the cube.
+
+![SingleCube_Tensile](documentation/SingleCube_Tensile_ISO_View.gif "Single Cube - Tensile test")
 
 ### Sphere - cube eccentric collision
 
 
+
+
+![SphereCube_ISO](documentation/SphereCube_ISO_View.gif "Sphere - Cube Collision ISO")
+
+![SphereCube_Side](documentation/SphereCube_Side_View.gif "Sphere - Cube Collision Side")
+
+![SphereCube_Wireframe](documentation/SphereCube_Side_View_Wireframe.gif "Sphere - Cube Collision Wireframe")
 
 ## A real life application - Corn stalk simulation
 
