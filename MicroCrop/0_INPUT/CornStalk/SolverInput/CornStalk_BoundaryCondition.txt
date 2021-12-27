@@ -1,0 +1,15 @@
+## FixedX(0/1) FixedY(0/1) FixedZ(0/1)
+GLOBAL 0
+0 1 0
+
+## ComponentID(#) FixedX(0/1) FixedY(0/1) FixedZ(0/1)
+COMPONENT 0
+2 1 1 1
+
+## LocationX(m) LocationY(m) LocationZ(m) NormalX(m) NormalY(m) NormalZ(m) FixedX(0/1) FixedY(0/1) FixedZ(0/1)
+PLANE 0
+0.0 0.0 0.0 1.0 0.0 0.0 1 1 1
+
+## LocationX(m) LocationY(m) LocationZ(m) FixedX(0/1) FixedY(0/1) FixedZ(0/1)
+LOCAL 0
+0.01 0.01 0.0 1 1 1

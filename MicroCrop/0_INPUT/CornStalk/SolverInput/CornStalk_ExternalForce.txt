@@ -1,0 +1,20 @@
+## StartTime(s) DurationTime(s) GravityX(m/s2) GravityY(m/s2) GravityZ(m/s2)
+GRAVITY 1
+0.0 9999.0 0.0 -9.81 0.0
+
+## StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+GLOBAL 0
+0.0 0.1 1.0 0.0 0.0
+
+## ComponentID(#) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+COMPONENT 0
+0 0.0 0.1 1.0 0.0 0.0
+
+## LocationX(m) LocationY(m) LocationZ(m) NormalX(-) NormalY(-) NormalZ(-) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+PLANE 0
+0.0 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 -0.001 0.0 0.0
+0.06 0.0 0.0 1.0 0.0 0.0 0.0 9999.0 0.001 0.0 0.0
+
+## LocationX(m) LocationY(m) LocationZ(m) StartTime(s) DurationTime(s) ForceX(N) ForceY(N) ForceZ(N)
+LOCAL 0
+0.0 0.0 0.01 0.0 9999.0 1.0 0.0 0.0

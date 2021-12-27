@@ -582,7 +582,7 @@ A usual run consists of the following steps:
 4. Saving the initial configuration
 5. *Initialization of the GPU device (optional)*
 6. Running the simulation. At the time of each saving the solver sends the following messages:
-   * Percentage of completeness;
+   * Percentage of completeness
    * Execution time of the number of iterations since the last save
    * Saving at the current simulation time
    * Execution time of the saving
@@ -724,23 +724,160 @@ Below you can see the eccentric collision of the two components:
 
 ## A real life application - Corn stalk simulation
 
-### Geometry
+The purpose of this exercise is to prove the following hypotheses:
+* The mass-spring simulation technique [1.] can be utilised on agricultural materials;
+* A calibrated mass-spring model is capable of predicting the physical and mechanical behaviour of agricultural materials.
+
+For the test of interest, the transversal compression of a corn stalk section was selected.
+The same physical and virtual tests were performed during my PhD research.
+For more details, you can find my dissertation [2.] in the *documentation* folder.
+
+The presented corn stalk model was not completely calibrated.
+I used the same iterative method taht was developed during my PhD research [2.] for the Discrete Element Model (DEM) calibration.
+In the future, I would like to test other calibration approaches involving machine learning.
+
+The simulation files are located here:
+* Geometry and mesh: *\0_INPUT\CornStalk\Geometry_Mesh*
+* Corn stalk material creator Python script: *\0_INPUT\CornStalk\MaterialCreation_Python*
+* Solver input files: *\0_INPUT\CornStalk\SolverInput*
+* Result files: *\1_OUTPUT\CornStalk_FinalRun*
+
+### Input parameters
+
+There are three components in the simulation: top plate, cron stalk and bottom plate, see below.
+All the geometries and meshes were created in [Gmsh](https://gmsh.info/).
+Explaining the usage of [Gmsh](https://gmsh.info/) is not part of this documentation.
+You can find its official reference manual [here](https://gmsh.info/doc/texinfo/gmsh.html).
+
+The dimensions of the top and bottom plates are 0.05 x 0.01 x 0.02 m.
+The corn stalk has a perfect ellipse cross section with the size of the major and minor axes being 9.75e-3 and 8.2e-3 m, respectively. 
+The length of the corn stalk section is 5e-3 m.
+These dimensions were defined based on my previous researach. [2.]
+
+For the top and bottom plates a coarse, while for the corn stalk a relatively fine mesh was used.
+The top and bottom plates were meshed in the same way by setting the largest element size to be 1e-2 m.
+However, the defined largest element size for the corn stalk mesh was 5e-4 m.
+
+The top plate has a fix velocity of -3.33 m s <sup>-1</sup> in direction Y, while the bottom plate is fixed.
+The corn stalk section has no initial or boundary conditions. 
+As an external force, gravitational field of -9.81 m s <sup>-2</sup> was applied globally in direction Y.
+
+Interaction properties were defined between the top plate & corn stalk, corn stalk & corn stalk and corn stalk & bottom plate.
+All the interaction properties were set to be the same.
+The coefficient of static friction was set to be 0.2, the normal contact stiffness was 2e6 N m <sup>-1</sup> and the tangential contact stiffness was 1e6 N m <sup>-1</sup> cells.
+
+The simulation time was 3.69e-3 sec with a time step of 5e-8 sec.
+A non-viscous global damping of 5e-2 was used to stabilize the simulation.
+The simulation was solved on a GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
+The total solving time was approximately 5 hours.
+
+The simulation contained the following elements:
+* 9808 nodes;
+* 191652 faces;
+* 47913 cells;
+* 143739 axial and
+* 143739 rotational springs.
+
+![CornStalkMesh](documentation/CornStalk_Mesh.png "Simulation Components and Mesh")
 
 ### Materials
+
+For the top and bottom plates a very stiff material with high density (steel like material) was assigned.
+The top and bottom plates are isotropic and homogeneous.
+The only purpose of this material is to be much stiffer than the corn stalk material, so I am not wasting more words on it here.
+For more details, you can check their material definition text files.
+
+The corn stalk material is much more interesting! 
+To create a transversally anisotropic, inhomogeneous material a simple [Python](https://www.python.org/) script was made:
+* *\0_INPUT\CornStalk\MaterialCreation_Python*
+
+First of all, the size of the core was defined. 
+Based on my PhD research [2.], I have chosen the major and minor axes of the core to be 8.75e-3 and 7.2e-3 m, respectively.
+In this way, we got a skin thickness of 1e-3 m.
+
+Then the density of the core and the skin was defined.
+According to the physical measurements, the density of the core is 202.1 kg m <sup>-3</sup>, while the density of the skin is 1501.1 kg m <sup>-3</sup>.
+You can see the different densities assigned to the core and skin cells below:
+
+![CornStalkDensity](documentation/CellMaterial_Density.JPG "Corn stalk density")
+
+In the corn stalk material the anisotropy axes were defined based on the followings:
+* the longitudinal anisotropy axis was defined manually and it was aligned with direction Z;
+* the radial anisotropy axis was defined by the string between the center of the corn stalk section and the barycenter of each cell;
+* the tangential anisotropy axis was defined by the cross product of the longitudinal and radial axes.
+
+You can see the anisotropy axis orientations visualized close to the center of the section below.
+The red, blue and green arrows represent the radial, tangential and longitudinal axis, respectively.
+
+![CornStalkAxisOrientation](documentation/CornStalk_Axis_Orientation.JPG "Corn stalk anisotropy axis orientation")
+
+Stiffness and strength properties are assigned to each cell one by one, so there are 47913 material definitions for the corn stalk section.
+The stiffness and strength of the cells was defined based on the DEM model I calibrated in my PhD [2.].
+However, some of the parameters of the mass-spring model did not exist in the DEM model (like different material behaviour for compressive and tensile loads) or they cannot be calculated back directly.
+To calibrate these paramters a couple of iterations were performed and based on these the following properties were defined:
+
+| Property													| Core		  | Skin		|
+| ----------------------------------------------------------| ----------- | ----------- |
+| Radial tensile stiffness (N m 	<sup>-1</sup>)			| 1.32e5      | 1.32e6      |
+| Tangential tensile stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
+| Longitudinal tensile stiffness (N m 	<sup>-1</sup>)		| 4.39e5      | 4.39e6      |
+| Radial compressive stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
+| Tangential compressive stiffness (N m 	<sup>-1</sup>)	| 1.32e5      | 1.32e6      |
+| Longitudinal compressive stiffness (N m 	<sup>-1</sup>)	| 4.39e5      | 4.39e6      |
+| Rotational stiffness (N rad 	<sup>-1</sup>)				| 1.0e1       | 1.0e1       |
+| Radial tensile strength (N)								| 1.0e3       | 1.0e3       |
+| Tangential tensile strength (N)							| 4.5         | 1.5e1       |
+| Longitudinal tensile strength (N)							| 1.0e3       | 1.0e3       |
+| Radial compressive strength (N)							| 1.0e3       | 1.0e3       |
+| Tangential compressive strength (N)						| 9.0         | 3.0e1       |
+| Longitudinal compressive strength (N)						| 1.0e3       | 1.0e3       |
+
+You can see that the core was 10x softer than the skin.
+There was no difference between the tensile and compressive stiffnesses assigned to the same orientation.
+For the transversal compression only 4 parameters had to be calibrated to reproduce the breakage of the corn stalk:
+* Tangential tensile strength in the skin and core;
+* Tangential compressive strength in the skin and core.
+
+The actual damping for each axial spring was calculated based on the critical damping multiplied by a damping ratio.
+The damping ratio was chosen to be 0.1 and the critical damping was calculated by the following equation:
+
+> *CriticalDamping = 2.0 * (SpringStiffness * CellMass) <sup>1/2</sup>*
+
+The critical time step was also calculated for each cell based on the Rayleigh theory:
+> *CriticalTimeStep = (CellMass / SpringStiffness)<sup>1/2</sup>*
+
+For each cell the smallest of the 6 calculated time steps was chosen.
+You can see the critical time step distribution in the corn stalk section below.
+According to this the overall smallest critical time step is 5.1e-8 sec, this why I have chosen 5.0e-8 sec to be the time step for the solver.
+
+![CornStalkTimeStep](documentation/CornStalk_TimeStep.JPG "Corn stalk critical time steps")
+
+### Results
+
+
+
+### Conclusions
+
+
 
 
 
 ## Performance tests
 
+
+
 ## Limitations
+
+
 
 ## Future work & development
 
-## Theory & background
+
 
 ## References
 
 [1. Oussama Jarrousse: Modified Mass-Spring System for Physically Based Deformation Modeling, Karlsruhe Transactions on Biomedical Engineering, Vol 14, 2011](https://www.researchgate.net/publication/342899408_Modified_Mass-spring_System_for_Physically_Based_Deformation_Modeling)
 
+[2. Adam Kovacs: Modelling of Maize Plant by The Discrete Element Method, Budapest University of Technology and Economics, 2019]()
 
 

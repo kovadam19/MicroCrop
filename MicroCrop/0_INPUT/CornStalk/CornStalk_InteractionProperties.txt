@@ -1,5 +1,0 @@
-## ComponentA(#) ComponentB(#) CoefficientOfStaticFriction(-) NormalStiffness(N/m) TangentialStiffness(N/m)
-INTERACTION 3
-0 1 0.2 2e6 1e6
-1 1 0.2 2e6 1e6
-1 2 0.2 2e6 1e6
