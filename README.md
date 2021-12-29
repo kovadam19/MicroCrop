@@ -728,9 +728,11 @@ The purpose of this exercise is to prove the following hypotheses:
 * The mass-spring simulation technique [1.] can be utilised on agricultural materials;
 * A calibrated mass-spring model is capable of predicting the physical and mechanical behaviour of agricultural materials.
 
-For the test of interest, the transversal compression of a corn stalk section was selected.
+For the test of interest, the transversal compression of a corn stalk section was selected, see below.
 The same physical and virtual tests were performed during my PhD research.
 For more details, you can find my dissertation [2.] in the *documentation* folder.
+
+![CompressionRealTest](documentation/Side_View_Compression_RealTest.gif "Real transversal compression")
 
 The presented corn stalk model was not completely calibrated.
 I used the same iterative method taht was developed during my PhD research [2.] for the Discrete Element Model (DEM) calibration.
@@ -769,7 +771,7 @@ The coefficient of static friction was set to be 0.2, the normal contact stiffne
 The simulation time was 3.69e-3 sec with a time step of 5e-8 sec.
 A non-viscous global damping of 5e-2 was used to stabilize the simulation.
 The simulation was solved on a GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
-The total solving time was approximately 5 hours.
+The total solving time was 17405926 milliseconds which is approximately 4.8 hours.
 
 The simulation contained the following elements:
 * 9808 nodes;
@@ -856,13 +858,23 @@ According to this the overall smallest critical time step is 5.1e-8 sec, this wh
 
 
 
+#### Qualitative results
+
+
+
+![SideView_CompressionComparison](documentation/Side_View_Compression_Comparison.gif "Qualitative comparison")
+
+#### Quantitative results
+
+
+
 ### Conclusions
 
 
 
 
 
-## Performance tests
+## Performance test
 
 
 
