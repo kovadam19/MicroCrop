@@ -892,7 +892,7 @@ The simulation components are visualized in the following ways:
 
 Since this is the first working version of the code there is a lot to do in the future:
 * Detailed performance test to find the bottlenecks;
-* More verification simulations must be performed on the physics implemented;
+* More verification simulations on the physics implemented;
 * Implementing more sophisticated spring, contact and damage models;
 * Implementing other time-integration schemes;
 * Implementing adaptive timestep;
