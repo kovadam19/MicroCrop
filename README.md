@@ -52,6 +52,264 @@ The solver was developed in [Microsoft Visual Studio 2019](https://visualstudio.
 
 ![QuickOverView](documentation/QuickOverview.png "Quick Overview")
 
+
+## Small examples
+
+In this section you can find small examples that show some of the capabilities of the solver.
+
+### One-side fixed cube with initial velocity
+
+In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while initial velocity of 1.0 m s <sup>-1</sup> in direction X and gravitational acceleration of -9.81 m s <sup>-2</sup> in direction Y are applied on it.
+The simulation contains the following elements:
+* 343 nodes;
+* 4548 faces;
+* 1137 cells;
+* 3411 axial and
+* 3411 rotational springs.
+
+The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The cube is also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
+
+The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
+The total solving time was 66 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SingleCube_Fixed_InitialVelocity_Gravity*
+* *\1_OUTPUT\SingleCube_Fixed_InitialVelocity_Gravity*
+
+Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
+The cells are visualized by magnitude nodal velocity.
+The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
+
+![SingleCube_InitVel](documentation/SingleCube_InitialVelocity_ISO_View.gif "Single Cube - Initial velocity")
+
+### Cube tensile test
+
+In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while an external force of 1e-3 N in direction X is applied on each node on the other side of the cube.
+The simulation contains the following elements:
+* 343 nodes;
+* 4548 faces;
+* 1137 cells;
+* 3411 axial and
+* 3411 rotational springs.
+
+The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The cube is also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
+
+The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
+The total solving time was 64 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SingleCubeTensileTest*
+* *\1_OUTPUT\SingleCubeTensileTest*
+
+Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
+The cells are visualized by magnitude nodal velocity.
+The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
+The external forces are visualized by red arrows on the right side of the cube.
+
+![SingleCube_Tensile](documentation/SingleCube_Tensile_ISO_View.gif "Single Cube - Tensile test")
+
+### Sphere - cube eccentric collision
+
+In this example, there are two components: a sphere and a cube.
+The sphere has a diameter of 0.01 m, while the size of the cube is 0.01 x 0.01 x 0.01 m.
+The center of the sphere is located above the center of the cube by 0.002 m, thus they are eccentric.
+The sphere has an initial velocity of 1.0 m s <sup>-1</sup> in direction X.
+The cube is floating in the space without having any initial or boundary conditions.
+
+The simulation contains the following elements:
+* 977 nodes;
+* 14864 faces;
+* 3716 cells;
+* 11148 axial and
+* 11148 rotational springs.
+
+For both components, the material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
+The components are also homogeneous, so all the cells had the same material definiton.
+For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
+The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
+Overall, I believe it is a jelly-like material.
+
+As to the interaction properties, the coefficient of static friction was set to be 0.2 between the two components.
+The normal contact stiffness was set to 2e3 N m <sup>-1</sup>, while the tangential contact stiffness was 1e3 N m <sup>-1</sup>.
+
+The total simulation time was 2.5e-2 sec and it was solved with a time step of 1e-6 sec on 12 CPU threads.
+The total solving time was 367 seconds. For more details, you can find the input and output files here:
+* *\0_INPUT\SphereCube_Collision*
+* *\1_OUTPUT\SphereCube_Collision*
+
+Below you can see the eccentric collision of the two components:
+* ISO view of the collision: components are visualized by magnitude nodal velocity;
+* Side view of the collision: components are visualized by magnitude nodal velocity;
+* Wireframe view with the total contact forces being visualized by arrows.
+
+*ISO view:*
+![SphereCube_ISO](documentation/SphereCube_ISO_View.gif "Sphere - Cube Collision ISO")
+
+---
+*Side view:*
+![SphereCube_Side](documentation/SphereCube_Side_View.gif "Sphere - Cube Collision Side")
+
+---
+*Wireframe with contact forces:*
+![SphereCube_Wireframe](documentation/SphereCube_Side_View_Wireframe.gif "Sphere - Cube Collision Wireframe")
+
+## A real life application - Corn stalk simulation
+
+The purpose of this exercise is to prove the following hypotheses:
+* The mass-spring simulation technique [1.] can be utilised on agricultural materials;
+* A calibrated mass-spring model is capable of predicting the physical and mechanical behaviour of agricultural materials.
+
+For the test of interest, the transversal compression of a corn stalk section was selected, see below.
+The same physical and virtual tests were performed during my PhD research.
+For more details, you can find my dissertation [2.] in the *documentation* folder.
+
+![CompressionRealTest](documentation/Side_View_Compression_RealTest.gif "Real transversal compression")
+
+The presented corn stalk model was not completely calibrated.
+I used the same iterative method taht was developed during my PhD research [2.] for the Discrete Element Model (DEM) calibration.
+In the future, I would like to test other calibration approaches involving machine learning.
+
+The simulation files are located here:
+* Geometry and mesh: *\0_INPUT\CornStalk\Geometry_Mesh*
+* Corn stalk material creator Python script: *\0_INPUT\CornStalk\MaterialCreation_Python*
+* Solver input files: *\0_INPUT\CornStalk\SolverInput*
+* Result files: *\1_OUTPUT\CornStalk_FinalRun*
+
+### Input parameters
+
+There are three components in the simulation: top plate, cron stalk and bottom plate, see below.
+All the geometries and meshes were created in [Gmsh](https://gmsh.info/).
+Explaining the usage of [Gmsh](https://gmsh.info/) is not part of this documentation.
+You can find its official reference manual [here](https://gmsh.info/doc/texinfo/gmsh.html).
+
+The dimensions of the top and bottom plates are 0.05 x 0.01 x 0.02 m.
+The corn stalk has a perfect ellipse cross section with the size of the major and minor axes being 9.75e-3 and 8.2e-3 m, respectively. 
+The length of the corn stalk section is 5e-3 m.
+These dimensions were defined based on my previous researach. [2.]
+
+For the top and bottom plates a coarse, while for the corn stalk a relatively fine mesh was used.
+The top and bottom plates were meshed in the same way by setting the largest element size to be 1e-2 m.
+However, the defined largest element size for the corn stalk mesh was 5e-4 m.
+
+The top plate has a fix velocity of -3.33 m s <sup>-1</sup> in direction Y, while the bottom plate is fixed.
+The corn stalk section has no initial or boundary conditions. 
+As an external force, gravitational field of -9.81 m s <sup>-2</sup> was applied globally in direction Y.
+
+Interaction properties were defined between the top plate & corn stalk, corn stalk & corn stalk and corn stalk & bottom plate.
+All the interaction properties were set to be the same.
+The coefficient of static friction was set to be 0.2, the normal contact stiffness was 2e6 N m <sup>-1</sup> and the tangential contact stiffness was 1e6 N m <sup>-1</sup> cells.
+
+The simulation time was 3.69e-3 sec with a time step of 5e-8 sec.
+A non-viscous global damping of 5e-2 was used to stabilize the simulation.
+The simulation was solved on a GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
+The total solving time was 17405926 milliseconds which is approximately 4.8 hours.
+
+The simulation contained the following elements:
+* 9808 nodes;
+* 191652 faces;
+* 47913 cells;
+* 143739 axial and
+* 143739 rotational springs.
+
+![CornStalkMesh](documentation/CornStalk_Mesh.png "Simulation Components and Mesh")
+
+### Materials
+
+For the top and bottom plates a very stiff material with high density (steel like material) was assigned.
+The top and bottom plates are isotropic and homogeneous.
+The only purpose of this material is to be much stiffer than the corn stalk material, so I am not wasting more words on it here.
+For more details, you can check their material definition text files.
+
+The corn stalk material is much more interesting! 
+To create a transversally anisotropic, inhomogeneous material a simple [Python](https://www.python.org/) script was made:
+* *\0_INPUT\CornStalk\MaterialCreation_Python*
+
+First of all, the size of the core was defined. 
+Based on my PhD research [2.], I have chosen the major and minor axes of the core to be 8.75e-3 and 7.2e-3 m, respectively.
+In this way, we got a skin thickness of 1e-3 m.
+
+Then the density of the core and the skin was defined.
+According to the physical measurements, the density of the core is 202.1 kg m <sup>-3</sup>, while the density of the skin is 1501.1 kg m <sup>-3</sup>.
+You can see the different densities assigned to the core and skin cells below:
+
+![CornStalkDensity](documentation/CellMaterial_Density.JPG "Corn stalk density")
+
+In the corn stalk material the anisotropy axes were defined based on the followings:
+* the longitudinal anisotropy axis was defined manually and it was aligned with direction Z;
+* the radial anisotropy axis was defined by the string between the center of the corn stalk section and the barycenter of each cell;
+* the tangential anisotropy axis was defined by the cross product of the longitudinal and radial axes.
+
+You can see the anisotropy axis orientations visualized close to the center of the section below.
+The red, blue and green arrows represent the radial, tangential and longitudinal axis, respectively.
+
+![CornStalkAxisOrientation](documentation/CornStalk_Axis_Orientation.JPG "Corn stalk anisotropy axis orientation")
+
+Stiffness and strength properties are assigned to each cell one by one, so there are 47913 material definitions for the corn stalk section.
+The stiffness and strength of the cells was defined based on the DEM model I calibrated in my PhD [2.].
+However, some of the parameters of the mass-spring model did not exist in the DEM model (like different material behaviour for compressive and tensile loads) or they cannot be calculated back directly.
+To calibrate these paramters a couple of iterations were performed and based on these the following properties were defined:
+
+| Property													| Core		  | Skin		|
+| ----------------------------------------------------------| ----------- | ----------- |
+| Radial tensile stiffness (N m 	<sup>-1</sup>)			| 1.32e5      | 1.32e6      |
+| Tangential tensile stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
+| Longitudinal tensile stiffness (N m 	<sup>-1</sup>)		| 4.39e5      | 4.39e6      |
+| Radial compressive stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
+| Tangential compressive stiffness (N m 	<sup>-1</sup>)	| 1.32e5      | 1.32e6      |
+| Longitudinal compressive stiffness (N m 	<sup>-1</sup>)	| 4.39e5      | 4.39e6      |
+| Rotational stiffness (N rad 	<sup>-1</sup>)				| 1.0e1       | 1.0e1       |
+| Radial tensile strength (N)								| 1.0e3       | 1.0e3       |
+| Tangential tensile strength (N)							| 4.5         | 1.5e1       |
+| Longitudinal tensile strength (N)							| 1.0e3       | 1.0e3       |
+| Radial compressive strength (N)							| 1.0e3       | 1.0e3       |
+| Tangential compressive strength (N)						| 9.0         | 3.0e1       |
+| Longitudinal compressive strength (N)						| 1.0e3       | 1.0e3       |
+
+You can see that the core was 10x softer than the skin.
+There was no difference between the tensile and compressive stiffnesses assigned to the same orientation.
+For the transversal compression only 4 parameters had to be calibrated to reproduce the breakage of the corn stalk:
+* Tangential tensile strength in the skin and core;
+* Tangential compressive strength in the skin and core.
+
+The actual damping for each axial spring was calculated based on the critical damping multiplied by a damping ratio.
+The damping ratio was chosen to be 0.1 and the critical damping was calculated by the following equation:
+
+> *CriticalDamping = 2.0 * (SpringStiffness * CellMass) <sup>1/2</sup>*
+
+The critical time step was also calculated for each cell based on the Rayleigh theory:
+> *CriticalTimeStep = (CellMass / SpringStiffness)<sup>1/2</sup>*
+
+For each cell the smallest of the 6 calculated time steps was chosen.
+You can see the critical time step distribution in the corn stalk section below.
+According to this the overall smallest critical time step is 5.1e-8 sec, this why I have chosen 5.0e-8 sec to be the time step for the solver.
+
+![CornStalkTimeStep](documentation/CornStalk_TimeStep.JPG "Corn stalk critical time steps")
+
+### Results
+
+
+
+#### Qualitative results
+
+
+
+![SideView_CompressionComparison](documentation/Side_View_Compression_Comparison.gif "Qualitative comparison")
+
+#### Quantitative results
+
+
+
+### Conclusions
+
+
+
+
+
+
 ## User guide
 
 In this section the usage of the application will be presented.
@@ -617,258 +875,6 @@ The simulation components are visualized in the following ways:
 * Rotational springs: each rotational spring is visualized as a quad element connecting the four intersection points of the two axial springs.
 * Contacts: each contact is visualized as a point at the location of the node that is involved in the interaction.
 * External forces: each external force is visualized as a point at the location of the node onto which it is applied.
-
-## Small examples
-
-In this section you can find small examples that show some of the capabilities of the solver.
-
-### One-side fixed cube with initial velocity
-
-In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while initial velocity of 1.0 m s <sup>-1</sup> in direction X and gravitational acceleration of -9.81 m s <sup>-2</sup> in direction Y are applied on it.
-The simulation contains the following elements:
-* 343 nodes;
-* 4548 faces;
-* 1137 cells;
-* 3411 axial and
-* 3411 rotational springs.
-
-The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
-The cube is also homogeneous, so all the cells had the same material definiton.
-For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
-The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
-Overall, I believe it is a jelly-like material.
-
-The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
-The total solving time was 66 seconds. For more details, you can find the input and output files here:
-* *\0_INPUT\SingleCube_Fixed_InitialVelocity_Gravity*
-* *\1_OUTPUT\SingleCube_Fixed_InitialVelocity_Gravity*
-
-Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
-The cells are visualized by magnitude nodal velocity.
-The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
-
-![SingleCube_InitVel](documentation/SingleCube_InitialVelocity_ISO_View.gif "Single Cube - Initial velocity")
-
-### Cube tensile test
-
-In this example, a single cube (size: 0.01 x 0.01 x 0.01 m) is fixed on one side (all 3 DoFs) while an external force of 1e-3 N in direction X is applied on each node on the other side of the cube.
-The simulation contains the following elements:
-* 343 nodes;
-* 4548 faces;
-* 1137 cells;
-* 3411 axial and
-* 3411 rotational springs.
-
-The material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
-The cube is also homogeneous, so all the cells had the same material definiton.
-For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
-The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
-Overall, I believe it is a jelly-like material.
-
-The total simulation time was 0.1 sec and it was solved with a time step of 1e-5 sec on 12 CPU threads.
-The total solving time was 64 seconds. For more details, you can find the input and output files here:
-* *\0_INPUT\SingleCubeTensileTest*
-* *\1_OUTPUT\SingleCubeTensileTest*
-
-Below, you can see the visualization of the results in [Paraview](https://www.paraview.org/).
-The cells are visualized by magnitude nodal velocity.
-The boundary conditions (fixed nodes) are visualized by blue spheres on the left side of the cube.
-The external forces are visualized by red arrows on the right side of the cube.
-
-![SingleCube_Tensile](documentation/SingleCube_Tensile_ISO_View.gif "Single Cube - Tensile test")
-
-### Sphere - cube eccentric collision
-
-In this example, there are two components: a sphere and a cube.
-The sphere has a diameter of 0.01 m, while the size of the cube is 0.01 x 0.01 x 0.01 m.
-The center of the sphere is located above the center of the cube by 0.002 m, thus they are eccentric.
-The sphere has an initial velocity of 1.0 m s <sup>-1</sup> in direction X.
-The cube is floating in the space without having any initial or boundary conditions.
-
-The simulation contains the following elements:
-* 977 nodes;
-* 14864 faces;
-* 3716 cells;
-* 11148 axial and
-* 11148 rotational springs.
-
-For both components, the material was isotropic, so all the three anisotropy axes had the same physical and mechanical properties.
-The components are also homogeneous, so all the cells had the same material definiton.
-For the sake of a quick solve, I used a relatively high density (1200 kg m <sup>-3</sup>) and a very low axial spring stiffness (1.0 N m <sup>-1</sup>).
-The system was also overdamped by using a viscous damping of 1e-2 N s m <sup>-1</sup>.
-Overall, I believe it is a jelly-like material.
-
-As to the interaction properties, the coefficient of static friction was set to be 0.2 between the two components.
-The normal contact stiffness was set to 2e3 N m <sup>-1</sup>, while the tangential contact stiffness was 1e3 N m <sup>-1</sup>.
-
-The total simulation time was 2.5e-2 sec and it was solved with a time step of 1e-6 sec on 12 CPU threads.
-The total solving time was 367 seconds. For more details, you can find the input and output files here:
-* *\0_INPUT\SphereCube_Collision*
-* *\1_OUTPUT\SphereCube_Collision*
-
-Below you can see the eccentric collision of the two components:
-* ISO view of the collision: components are visualized by magnitude nodal velocity;
-* Side view of the collision: components are visualized by magnitude nodal velocity;
-* Wireframe view with the total contact forces being visualized by arrows.
-
-*ISO view:*
-![SphereCube_ISO](documentation/SphereCube_ISO_View.gif "Sphere - Cube Collision ISO")
-
----
-*Side view:*
-![SphereCube_Side](documentation/SphereCube_Side_View.gif "Sphere - Cube Collision Side")
-
----
-*Wireframe with contact forces:*
-![SphereCube_Wireframe](documentation/SphereCube_Side_View_Wireframe.gif "Sphere - Cube Collision Wireframe")
-
-## A real life application - Corn stalk simulation
-
-The purpose of this exercise is to prove the following hypotheses:
-* The mass-spring simulation technique [1.] can be utilised on agricultural materials;
-* A calibrated mass-spring model is capable of predicting the physical and mechanical behaviour of agricultural materials.
-
-For the test of interest, the transversal compression of a corn stalk section was selected, see below.
-The same physical and virtual tests were performed during my PhD research.
-For more details, you can find my dissertation [2.] in the *documentation* folder.
-
-![CompressionRealTest](documentation/Side_View_Compression_RealTest.gif "Real transversal compression")
-
-The presented corn stalk model was not completely calibrated.
-I used the same iterative method taht was developed during my PhD research [2.] for the Discrete Element Model (DEM) calibration.
-In the future, I would like to test other calibration approaches involving machine learning.
-
-The simulation files are located here:
-* Geometry and mesh: *\0_INPUT\CornStalk\Geometry_Mesh*
-* Corn stalk material creator Python script: *\0_INPUT\CornStalk\MaterialCreation_Python*
-* Solver input files: *\0_INPUT\CornStalk\SolverInput*
-* Result files: *\1_OUTPUT\CornStalk_FinalRun*
-
-### Input parameters
-
-There are three components in the simulation: top plate, cron stalk and bottom plate, see below.
-All the geometries and meshes were created in [Gmsh](https://gmsh.info/).
-Explaining the usage of [Gmsh](https://gmsh.info/) is not part of this documentation.
-You can find its official reference manual [here](https://gmsh.info/doc/texinfo/gmsh.html).
-
-The dimensions of the top and bottom plates are 0.05 x 0.01 x 0.02 m.
-The corn stalk has a perfect ellipse cross section with the size of the major and minor axes being 9.75e-3 and 8.2e-3 m, respectively. 
-The length of the corn stalk section is 5e-3 m.
-These dimensions were defined based on my previous researach. [2.]
-
-For the top and bottom plates a coarse, while for the corn stalk a relatively fine mesh was used.
-The top and bottom plates were meshed in the same way by setting the largest element size to be 1e-2 m.
-However, the defined largest element size for the corn stalk mesh was 5e-4 m.
-
-The top plate has a fix velocity of -3.33 m s <sup>-1</sup> in direction Y, while the bottom plate is fixed.
-The corn stalk section has no initial or boundary conditions. 
-As an external force, gravitational field of -9.81 m s <sup>-2</sup> was applied globally in direction Y.
-
-Interaction properties were defined between the top plate & corn stalk, corn stalk & corn stalk and corn stalk & bottom plate.
-All the interaction properties were set to be the same.
-The coefficient of static friction was set to be 0.2, the normal contact stiffness was 2e6 N m <sup>-1</sup> and the tangential contact stiffness was 1e6 N m <sup>-1</sup> cells.
-
-The simulation time was 3.69e-3 sec with a time step of 5e-8 sec.
-A non-viscous global damping of 5e-2 was used to stabilize the simulation.
-The simulation was solved on a GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
-The total solving time was 17405926 milliseconds which is approximately 4.8 hours.
-
-The simulation contained the following elements:
-* 9808 nodes;
-* 191652 faces;
-* 47913 cells;
-* 143739 axial and
-* 143739 rotational springs.
-
-![CornStalkMesh](documentation/CornStalk_Mesh.png "Simulation Components and Mesh")
-
-### Materials
-
-For the top and bottom plates a very stiff material with high density (steel like material) was assigned.
-The top and bottom plates are isotropic and homogeneous.
-The only purpose of this material is to be much stiffer than the corn stalk material, so I am not wasting more words on it here.
-For more details, you can check their material definition text files.
-
-The corn stalk material is much more interesting! 
-To create a transversally anisotropic, inhomogeneous material a simple [Python](https://www.python.org/) script was made:
-* *\0_INPUT\CornStalk\MaterialCreation_Python*
-
-First of all, the size of the core was defined. 
-Based on my PhD research [2.], I have chosen the major and minor axes of the core to be 8.75e-3 and 7.2e-3 m, respectively.
-In this way, we got a skin thickness of 1e-3 m.
-
-Then the density of the core and the skin was defined.
-According to the physical measurements, the density of the core is 202.1 kg m <sup>-3</sup>, while the density of the skin is 1501.1 kg m <sup>-3</sup>.
-You can see the different densities assigned to the core and skin cells below:
-
-![CornStalkDensity](documentation/CellMaterial_Density.JPG "Corn stalk density")
-
-In the corn stalk material the anisotropy axes were defined based on the followings:
-* the longitudinal anisotropy axis was defined manually and it was aligned with direction Z;
-* the radial anisotropy axis was defined by the string between the center of the corn stalk section and the barycenter of each cell;
-* the tangential anisotropy axis was defined by the cross product of the longitudinal and radial axes.
-
-You can see the anisotropy axis orientations visualized close to the center of the section below.
-The red, blue and green arrows represent the radial, tangential and longitudinal axis, respectively.
-
-![CornStalkAxisOrientation](documentation/CornStalk_Axis_Orientation.JPG "Corn stalk anisotropy axis orientation")
-
-Stiffness and strength properties are assigned to each cell one by one, so there are 47913 material definitions for the corn stalk section.
-The stiffness and strength of the cells was defined based on the DEM model I calibrated in my PhD [2.].
-However, some of the parameters of the mass-spring model did not exist in the DEM model (like different material behaviour for compressive and tensile loads) or they cannot be calculated back directly.
-To calibrate these paramters a couple of iterations were performed and based on these the following properties were defined:
-
-| Property													| Core		  | Skin		|
-| ----------------------------------------------------------| ----------- | ----------- |
-| Radial tensile stiffness (N m 	<sup>-1</sup>)			| 1.32e5      | 1.32e6      |
-| Tangential tensile stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
-| Longitudinal tensile stiffness (N m 	<sup>-1</sup>)		| 4.39e5      | 4.39e6      |
-| Radial compressive stiffness (N m 	<sup>-1</sup>)		| 1.32e5      | 1.32e6      |
-| Tangential compressive stiffness (N m 	<sup>-1</sup>)	| 1.32e5      | 1.32e6      |
-| Longitudinal compressive stiffness (N m 	<sup>-1</sup>)	| 4.39e5      | 4.39e6      |
-| Rotational stiffness (N rad 	<sup>-1</sup>)				| 1.0e1       | 1.0e1       |
-| Radial tensile strength (N)								| 1.0e3       | 1.0e3       |
-| Tangential tensile strength (N)							| 4.5         | 1.5e1       |
-| Longitudinal tensile strength (N)							| 1.0e3       | 1.0e3       |
-| Radial compressive strength (N)							| 1.0e3       | 1.0e3       |
-| Tangential compressive strength (N)						| 9.0         | 3.0e1       |
-| Longitudinal compressive strength (N)						| 1.0e3       | 1.0e3       |
-
-You can see that the core was 10x softer than the skin.
-There was no difference between the tensile and compressive stiffnesses assigned to the same orientation.
-For the transversal compression only 4 parameters had to be calibrated to reproduce the breakage of the corn stalk:
-* Tangential tensile strength in the skin and core;
-* Tangential compressive strength in the skin and core.
-
-The actual damping for each axial spring was calculated based on the critical damping multiplied by a damping ratio.
-The damping ratio was chosen to be 0.1 and the critical damping was calculated by the following equation:
-
-> *CriticalDamping = 2.0 * (SpringStiffness * CellMass) <sup>1/2</sup>*
-
-The critical time step was also calculated for each cell based on the Rayleigh theory:
-> *CriticalTimeStep = (CellMass / SpringStiffness)<sup>1/2</sup>*
-
-For each cell the smallest of the 6 calculated time steps was chosen.
-You can see the critical time step distribution in the corn stalk section below.
-According to this the overall smallest critical time step is 5.1e-8 sec, this why I have chosen 5.0e-8 sec to be the time step for the solver.
-
-![CornStalkTimeStep](documentation/CornStalk_TimeStep.JPG "Corn stalk critical time steps")
-
-### Results
-
-
-
-#### Qualitative results
-
-
-
-![SideView_CompressionComparison](documentation/Side_View_Compression_Comparison.gif "Qualitative comparison")
-
-#### Quantitative results
-
-
-
-### Conclusions
 
 
 
