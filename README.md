@@ -205,8 +205,9 @@ The coefficient of static friction was set to be 0.2, the normal contact stiffne
 
 The simulation time was 3.69e-3 sec with a time step of 5e-8 sec.
 A non-viscous global damping of 5e-2 was used to stabilize the simulation.
-The simulation was solved on a GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
-The total solving time was 17405926 milliseconds which is approximately 4.8 hours.
+Before running the simulation I compared the performance on CPU ([AMD Ryzen 5 3600 6-core](https://www.amd.com/en/products/cpu/amd-ryzen-5-3600)) and on GPU ([NVIDIA GeForce GTX 1660 Ti](https://www.nvidia.com/fr-be/geforce/graphics-cards/gtx-1660-ti/)).
+The quick comparison showed that the simulation was ~11x quicker on the GPU device by setting the number of threads per block to be 256 and the number of blocks to be 128.
+In this way, the total solving time was 17405926 milliseconds which is approximately 4.8 hours.
 
 The simulation contained the following elements:
 * 9808 nodes;
@@ -291,24 +292,35 @@ According to this the overall smallest critical time step is 5.1e-8 sec, this wh
 
 ### Results
 
-
+In this section I will briefly analyse the results of the corn stalk compression.
 
 #### Qualitative results
 
-
+Since the material is not properly calibrated yet I focused mainly on the qualitative results like the breakage of the stalk section.
+Below you can see a side-by-side comparison between the simulation and physical test results.
+The following similarities can be observed:
+* First, a vertical crack appears in the core material due to horizontal tension;
+* Second, horizontal cracks appear in both half of the broken cross section due to vertical compression of the cells (this is why a large amount of liqued appears in the physical test);
+* Third, the vertical crack propagates through the skin material;
+* Fourth, the skin cracks on both sides of the section.
 
 ![SideView_CompressionComparison](documentation/Side_View_Compression_Comparison.gif "Qualitative comparison")
 
 #### Quantitative results
 
+To compare the compression force results both the measured and simulated curves were normalized, see below.
+Since the material is not properly calibrated the curves show less similarity.
+The only similar feature between them is the force dropping around 0.125 strain, after the first vertical crack appeared.
 
+![ForceStrainCurve](documentation/CornStalk_ForceStrainCurve.JPG "Force-Strain Curve")
 
 ### Conclusions
 
-
-
-
-
+After this concise test the following conclusions can be drawn:
+* The mass-spring simulation technique [1.] can be utilised on agricultural materials;
+* A mass-spring model is capable of predicting the physical and mechanical behaviour of agricultural materials.
+ 
+However, further investigation is needed with a properly calibrated crop material.
 
 ## User guide
 
@@ -876,21 +888,17 @@ The simulation components are visualized in the following ways:
 * Contacts: each contact is visualized as a point at the location of the node that is involved in the interaction.
 * External forces: each external force is visualized as a point at the location of the node onto which it is applied.
 
-
-
-
-
-## Performance test
-
-
-
-## Limitations
-
-
-
 ## Future work & development
 
-
+Since this is the first working version of the code there is a lot to do in the future:
+* Detailed performance test to find the bottlenecks;
+* More verification simulations must be performed on the physics implemented;
+* Implementing more sophisticated spring, contact and damage models;
+* Implementing other time-integration schemes;
+* Implementing adaptive timestep;
+* Implementing instability detection;
+* Implementing cells with constant volume;
+* etc.... etc...
 
 ## References
 
